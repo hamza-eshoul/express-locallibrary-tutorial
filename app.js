@@ -4,6 +4,7 @@ var path = require("path"); //built-in Node module
 var cookieParser = require("cookie-parser"); // cookie parser Node library
 var logger = require("morgan"); //morgan ogger Node library
 const mongoose = require("mongoose"); //import the mongoose module
+const dotenv = require("dotenv").config();
 
 // set strictQuery to false
 mongoose.set("strictQuery", false);
@@ -19,9 +20,7 @@ var app = express();
 
 // connect to db
 async function main() {
-  await mongoose.connect(
-    "mongodb+srv://hamzaeshoulpro2:hamzahamza@mdn-express-tuto.5w0b7qm.mongodb.net/?retryWrites=true&w=majority"
-  );
+  await mongoose.connect(process.env.MONGODB_URI);
 }
 main().catch((err) => console.log(err));
 
